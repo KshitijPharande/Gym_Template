@@ -1,26 +1,117 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  --font-sans: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
+  
+  --color-neon-green: #FF3B30; /* Redefined to Crimson Red for High-Performance Athletics */
+  --color-electric-blue: #C90000; /* Redefined to Deep Crimson Red */
+  --color-dark-bg: #050505;
+  --color-dark-card: rgba(15, 15, 15, 0.65);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+  --color-glass-border-hover: rgba(255, 59, 48, 0.25);
+  
+  --animate-pulse-ring: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  --animate-float: float 4s ease-in-out infinite;
+  
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.7);
+    }
+    70% {
+      transform: scale(1.1);
+      box-shadow: 0 0 0 10px rgba(255, 59, 48, 0);
+    }
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(255, 59, 48, 0);
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom Base Styles */
+html, body {
+  background-color: #050505;
+  color: #F3F4F6;
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #080808;
+}
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF3B30;
+}
+
+/* Glassmorphism Utilities */
+@utility glass-panel {
+  background: rgba(15, 15, 15, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@utility glass-card {
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@utility glass-card-hover {
+  &:hover {
+    border-color: rgba(255, 59, 48, 0.3);
+    box-shadow: 0 0 25px rgba(255, 59, 48, 0.15);
+    transform: translateY(-6px);
+  }
+}
+
+@utility glass-card-hover-blue {
+  &:hover {
+    border-color: rgba(201, 0, 0, 0.3);
+    box-shadow: 0 0 25px rgba(201, 0, 0, 0.15);
+    transform: translateY(-6px);
+  }
+}
+
+@utility text-glow-green {
+  text-shadow: 0 0 10px rgba(255, 59, 48, 0.5);
+}
+
+@utility text-glow-blue {
+  text-shadow: 0 0 10px rgba(201, 0, 0, 0.5);
+}
+
+/* Hide Scrollbar for carousels */
+@utility no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+}
+
+/* GSAP Split text animations styles */
+.char-reveal {
+  overflow: hidden;
+  display: inline-block;
 }
