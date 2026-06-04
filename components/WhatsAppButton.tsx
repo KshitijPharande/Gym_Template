@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function WhatsAppButton() {
   // Direct Link to WhatsApp. Using a demo Pune number: +91 98230 12345
-  const whatsappUrl = "https://wa.me/919823012345?text=Hi%20PowerFit%20Pune!%20I'd%20like%20to%20book%20a%20free%20trial%20session%20and%20know%20more%20about%20membership%20plans.";
+  const whatsappUrl = "https://wa.me/918796644348?text=Hi%20PowerFit%20Pune!%20I'd%20like%20to%20book%20a%20free%20trial%20session%20and%20know%20more%20about%20membership%20plans.";
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex items-center justify-center">

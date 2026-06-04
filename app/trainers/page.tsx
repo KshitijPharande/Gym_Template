@@ -148,7 +148,7 @@ export default function Trainers() {
             Compare Trainer Access Plans
           </Link>
           <a
-            href="https://wa.me/919823012345?text=Hi%20PowerFit%20Pune,%20I'd%20like%20to%20inquire%20about%20personal%20coaching%20timings."
+            href="https://wa.me/918796644348?text=Hi%20PowerFit%20Pune,%20I'd%20like%20to%20inquire%20about%20personal%20coaching%20timings."
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 py-3 rounded-full font-bold text-sm tracking-wider uppercase bg-neon-green text-black hover:bg-neon-green/90 transition-all duration-300 shadow-[0_0_15px_rgba(255,59,48,0.3)] w-full sm:w-auto block"

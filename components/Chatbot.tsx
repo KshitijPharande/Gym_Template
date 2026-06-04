@@ -344,7 +344,7 @@ export default function Chatbot() {
       case "booking-receipt":
         const { name, phone, date, time, goal } = m.customData || {};
         const waText = `New Gym Tour Booking! 🏋️‍♂️\n\nName: ${name}\nPhone: ${phone}\nFocus: ${goal}\nDate: ${date}\nTime: ${time}\n\nPlease confirm my entry!`;
-        const waLink = `https://wa.me/919823012345?text=${encodeURIComponent(waText)}`;
+        const waLink = `https://wa.me/918796644348?text=${encodeURIComponent(waText)}`;
         return (
           <div className="mt-3 bg-gradient-to-br from-neutral-900 to-black border border-neon-green/30 rounded-2xl p-5 space-y-4 shadow-[0_0_20px_rgba(255,59,48,0.15)]">
             <div className="flex items-center gap-2 text-neon-green border-b border-white/5 pb-2.5">

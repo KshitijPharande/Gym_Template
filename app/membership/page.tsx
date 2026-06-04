@@ -163,7 +163,7 @@ export default function Membership() {
 
             <div className="mt-8 pt-4">
               <a
-                href={`https://wa.me/919823012345?text=${encodeURIComponent(plan.waMessage)}`}
+                href={`https://wa.me/918796644348?text=${encodeURIComponent(plan.waMessage)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`block w-full py-3.5 rounded-xl text-center text-sm font-bold tracking-wider uppercase transition-all duration-300 ${

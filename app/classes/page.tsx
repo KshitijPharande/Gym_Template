@@ -229,7 +229,7 @@ export default function Classes() {
       <section className="py-20 text-center space-y-4">
         <h3 className="text-xl font-bold text-white">Ready to join your first session?</h3>
         <a
-          href="https://wa.me/919823012345?text=Hi%20PowerFit%20Pune,%20I'd%20like%20to%20register%20for%20a%20trial%20class!"
+          href="https://wa.me/918796644348?text=Hi%20PowerFit%20Pune,%20I'd%20like%20to%20register%20for%20a%20trial%20class!"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex px-8 py-4 rounded-full font-bold text-sm tracking-wider uppercase bg-neon-green text-black hover:bg-neon-green/90 transition-all duration-300 shadow-[0_0_20px_rgba(255,59,48,0.4)]"

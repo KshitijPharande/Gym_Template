@@ -33,7 +33,7 @@ export default function Contact() {
       `*Phone:* ${formData.phone}\n` +
       `*Message:* ${formData.message}`;
 
-    const whatsappUrl = `https://wa.me/919823012345?text=${encodeURIComponent(waText)}`;
+    const whatsappUrl = `https://wa.me/918796644348?text=${encodeURIComponent(waText)}`;
     
     // Redirect user to WhatsApp
     window.open(whatsappUrl, "_blank");

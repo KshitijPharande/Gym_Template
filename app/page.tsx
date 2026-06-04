@@ -148,7 +148,7 @@ export default function Home() {
               {/* Action CTAs */}
               <div className="hero-ctas flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto pt-2">
                 <a
-                  href="https://wa.me/919823012345?text=Hi%20PowerFit%20Pune,%20I'd%20like%20to%20book%20a%20free%20trial%20session%20and%20tour%20the%20facility!"
+                  href="https://wa.me/918796644348?text=Hi%20PowerFit%20Pune,%20I'd%20like%20to%20book%20a%20free%20trial%20session%20and%20tour%20the%20facility!"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-8 py-3.5 rounded-full font-bold text-sm tracking-wider uppercase bg-neon-green text-black hover:bg-neon-green/90 transition-all duration-300 shadow-[0_0_20px_rgba(255,59,48,0.3)] w-full sm:w-auto text-center cursor-pointer"
@@ -557,7 +557,7 @@ export default function Home() {
             <div className="shrink-0 flex items-center justify-center relative">
               <span className="absolute w-full h-full bg-neon-green/20 rounded-full animate-pulse-ring scale-125" />
               <a
-                href="https://wa.me/919823012345?text=Hi%20PowerFit%20Pune,%20I'd%20like%20to%20schedule%20a%20free%20gym%20walk-through!"
+                href="https://wa.me/918796644348?text=Hi%20PowerFit%20Pune,%20I'd%20like%20to%20schedule%20a%20free%20gym%20walk-through!"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="relative px-8 py-4 rounded-full font-bold text-sm tracking-wider uppercase bg-neon-green text-black hover:bg-neon-green/90 transition-all duration-300 shadow-[0_0_25px_rgba(255,59,48,0.5)] block text-center cursor-pointer"
