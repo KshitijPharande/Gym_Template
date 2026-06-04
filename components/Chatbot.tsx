@@ -175,6 +175,7 @@ export default function Chatbot() {
             customType: "booking-receipt",
             customData: {
               name: bookingState.name,
+              phone: bookingState.phone,
               date: date,
               time: time,
               goal: bookingState.goal
@@ -341,7 +342,9 @@ export default function Chatbot() {
           <BookingPicker bookedSlots={bookedSlots} onSelect={submitBooking} />
         );
       case "booking-receipt":
-        const { name, date, time, goal } = m.customData || {};
+        const { name, phone, date, time, goal } = m.customData || {};
+        const waText = `New Gym Tour Booking! 🏋️‍♂️\n\nName: ${name}\nPhone: ${phone}\nFocus: ${goal}\nDate: ${date}\nTime: ${time}\n\nPlease confirm my entry!`;
+        const waLink = `https://wa.me/919823012345?text=${encodeURIComponent(waText)}`;
         return (
           <div className="mt-3 bg-gradient-to-br from-neutral-900 to-black border border-neon-green/30 rounded-2xl p-5 space-y-4 shadow-[0_0_20px_rgba(255,59,48,0.15)]">
             <div className="flex items-center gap-2 text-neon-green border-b border-white/5 pb-2.5">
@@ -356,7 +359,7 @@ export default function Chatbot() {
               <p className="text-gray-400 font-light text-3xs mt-2 italic text-gray-500">Address: 1st Floor, Pride House, Shivaji Nagar (FC Road), Pune</p>
             </div>
             <a
-              href={`https://wa.me/919823012345?text=Hi%20PowerFit%20Pune!%20My%20tour%20is%20booked%20for%20${date}%20at%20${time}.%20Please%20confirm%20my%20entry.`}
+              href={waLink}
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full py-2 bg-neon-green text-black font-extrabold text-center text-xs rounded-xl hover:bg-neon-green/90 transition-colors uppercase tracking-wider"
