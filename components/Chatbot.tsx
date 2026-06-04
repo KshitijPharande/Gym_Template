@@ -8,7 +8,8 @@ interface Message {
   sender: "bot" | "user";
   text: string;
   isCustomComponent?: boolean;
-  component?: React.ReactNode;
+  customType?: "faq-options" | "faq-tour-button" | "goal-options" | "booking-picker" | "booking-receipt" | "tour-or-faq";
+  customData?: any;
 }
 
 const timeSlots = ["07:00 AM", "08:00 AM", "09:00 AM", "05:00 PM", "06:00 PM", "07:00 PM", "08:00 PM"];
@@ -97,34 +98,7 @@ export default function Chatbot() {
           sender: "bot",
           text: "Choose a topic below to view details:",
           isCustomComponent: true,
-          component: (
-            <div className="flex flex-col gap-2 mt-2">
-              <button
-                onClick={() => handleFaqSelect("pricing")}
-                className="text-left bg-white/5 border border-white/10 hover:border-neon-green/30 hover:bg-neon-green/5 text-xs text-white p-2.5 rounded-xl transition-all"
-              >
-                💰 Membership Costs
-              </button>
-              <button
-                onClick={() => handleFaqSelect("timings")}
-                className="text-left bg-white/5 border border-white/10 hover:border-neon-green/30 hover:bg-neon-green/5 text-xs text-white p-2.5 rounded-xl transition-all"
-              >
-                ⏱️ Gym Timings
-              </button>
-              <button
-                onClick={() => handleFaqSelect("equipment")}
-                className="text-left bg-white/5 border border-white/10 hover:border-neon-green/30 hover:bg-neon-green/5 text-xs text-white p-2.5 rounded-xl transition-all"
-              >
-                🏋️ Equipment Brands
-              </button>
-              <button
-                onClick={() => handleFaqSelect("amenities")}
-                className="text-left bg-white/5 border border-white/10 hover:border-neon-green/30 hover:bg-neon-green/5 text-xs text-white p-2.5 rounded-xl transition-all"
-              >
-                🚿 Lockers & Steam Shower
-              </button>
-            </div>
-          )
+          customType: "faq-options"
         }
       ]);
     }, 1000);
@@ -152,14 +126,7 @@ export default function Chatbot() {
           sender: "bot",
           text: "Would you like to schedule a tour to view the facility?",
           isCustomComponent: true,
-          component: (
-            <button
-              onClick={handleStartBooking}
-              className="mt-2 w-full py-2 bg-neon-green text-black font-bold text-xs rounded-xl hover:bg-neon-green/90 transition-colors uppercase tracking-wider"
-            >
-              Book Gym Tour
-            </button>
-          )
+          customType: "faq-tour-button"
         }
       ]);
     }, 1000);
@@ -205,29 +172,13 @@ export default function Chatbot() {
             sender: "bot",
             text: "🎉 Your Gym Visit is officially booked!",
             isCustomComponent: true,
-            component: (
-              <div className="mt-3 bg-gradient-to-br from-neutral-900 to-black border border-neon-green/30 rounded-2xl p-5 space-y-4 shadow-[0_0_20px_rgba(255,59,48,0.1)]">
-                <div className="flex items-center gap-2 text-neon-green border-b border-white/5 pb-2.5">
-                  <CheckCircle2 className="h-5 w-5 shrink-0" />
-                  <span className="font-extrabold text-xs uppercase tracking-widest text-glow-green">Booking Confirmed</span>
-                </div>
-                <div className="space-y-2 text-2xs sm:text-xs">
-                  <p className="text-gray-400">Visitor: <strong className="text-white font-semibold">{bookingState.name}</strong></p>
-                  <p className="text-gray-400">Date: <strong className="text-white font-semibold">{date}</strong></p>
-                  <p className="text-gray-400">Time Slot: <strong className="text-white font-semibold text-neon-green">{time}</strong></p>
-                  <p className="text-gray-400">Focus: <strong className="text-white font-semibold">{bookingState.goal}</strong></p>
-                  <p className="text-gray-400 font-light text-3xs mt-2 italic text-gray-500">Address: 1st Floor, Pride House, Shivaji Nagar (FC Road), Pune</p>
-                </div>
-                <a
-                  href={`https://wa.me/919823012345?text=Hi%20PowerFit%20Pune!%20My%20tour%20is%20booked%20for%20${date}%20at%20${time}.%20Please%20confirm%20my%20entry.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full py-2 bg-neon-green text-black font-extrabold text-center text-xs rounded-xl hover:bg-neon-green/90 transition-colors uppercase tracking-wider"
-                >
-                  Text Receipt on WhatsApp
-                </a>
-              </div>
-            )
+            customType: "booking-receipt",
+            customData: {
+              name: bookingState.name,
+              date: date,
+              time: time,
+              goal: bookingState.goal
+            }
           }
         ]);
         
@@ -286,19 +237,7 @@ export default function Chatbot() {
             sender: "bot",
             text: "Got it! What is your main fitness focus?",
             isCustomComponent: true,
-            component: (
-              <div className="flex flex-wrap gap-2 mt-2">
-                {["Strength Lifting", "CrossFit", "Fat Loss", "Yoga Flow"].map((goal) => (
-                  <button
-                    key={goal}
-                    onClick={() => handleGoalSelect(goal)}
-                    className="bg-white/5 border border-white/10 hover:border-neon-green/30 hover:bg-neon-green/5 text-xs text-white px-3 py-1.5 rounded-xl transition-all"
-                  >
-                    {goal}
-                  </button>
-                ))}
-              </div>
-            )
+            customType: "goal-options"
           }
         ]);
       }, 800);
@@ -320,7 +259,7 @@ export default function Chatbot() {
             sender: "bot",
             text: "Perfect. When would you like to visit? Select a date and time slot below:",
             isCustomComponent: true,
-            component: <BookingPicker bookedSlots={bookedSlots} onSelect={submitBooking} />
+            customType: "booking-picker"
           }
         ]);
       }, 800);
@@ -336,25 +275,115 @@ export default function Chatbot() {
             sender: "bot",
             text: "How can I help you today?",
             isCustomComponent: true,
-            component: (
-              <div className="flex gap-2 mt-2">
-                <button
-                  onClick={handleStartBooking}
-                  className="flex-1 py-2 bg-neon-green text-black font-bold text-xs rounded-xl hover:bg-neon-green/90 transition-colors uppercase tracking-wider"
-                >
-                  Book Gym Tour
-                </button>
-                <button
-                  onClick={handleStartFAQs}
-                  className="flex-1 py-2 border border-white/10 hover:bg-white/5 text-white font-semibold text-xs rounded-xl transition-all"
-                >
-                  Ask FAQs
-                </button>
-              </div>
-            )
+            customType: "tour-or-faq"
           }
         ]);
       }, 1000);
+    }
+  };
+
+  const renderCustomComponent = (m: Message) => {
+    switch (m.customType) {
+      case "faq-options":
+        return (
+          <div className="flex flex-col gap-2 mt-2">
+            <button
+              onClick={() => handleFaqSelect("pricing")}
+              className="text-left bg-white/5 border border-white/10 hover:border-neon-green/30 hover:bg-neon-green/5 text-xs text-white p-2.5 rounded-xl transition-all"
+            >
+              💰 Membership Costs
+            </button>
+            <button
+              onClick={() => handleFaqSelect("timings")}
+              className="text-left bg-white/5 border border-white/10 hover:border-neon-green/30 hover:bg-neon-green/5 text-xs text-white p-2.5 rounded-xl transition-all"
+            >
+              ⏱️ Gym Timings
+            </button>
+            <button
+              onClick={() => handleFaqSelect("equipment")}
+              className="text-left bg-white/5 border border-white/10 hover:border-neon-green/30 hover:bg-neon-green/5 text-xs text-white p-2.5 rounded-xl transition-all"
+            >
+              🏋️ Equipment Brands
+            </button>
+            <button
+              onClick={() => handleFaqSelect("amenities")}
+              className="text-left bg-white/5 border border-white/10 hover:border-neon-green/30 hover:bg-neon-green/5 text-xs text-white p-2.5 rounded-xl transition-all"
+            >
+              🚿 Lockers & Steam Shower
+            </button>
+          </div>
+        );
+      case "faq-tour-button":
+        return (
+          <button
+            onClick={handleStartBooking}
+            className="mt-2 w-full py-2 bg-neon-green text-black font-bold text-xs rounded-xl hover:bg-neon-green/90 transition-colors uppercase tracking-wider"
+          >
+            Book Gym Tour
+          </button>
+        );
+      case "goal-options":
+        return (
+          <div className="flex flex-wrap gap-2 mt-2">
+            {["Strength Lifting", "CrossFit", "Fat Loss", "Yoga Flow"].map((goal) => (
+              <button
+                key={goal}
+                onClick={() => handleGoalSelect(goal)}
+                className="bg-white/5 border border-white/10 hover:border-neon-green/30 hover:bg-neon-green/5 text-xs text-white px-3 py-1.5 rounded-xl transition-all"
+              >
+                {goal}
+              </button>
+            ))}
+          </div>
+        );
+      case "booking-picker":
+        return (
+          <BookingPicker bookedSlots={bookedSlots} onSelect={submitBooking} />
+        );
+      case "booking-receipt":
+        const { name, date, time, goal } = m.customData || {};
+        return (
+          <div className="mt-3 bg-gradient-to-br from-neutral-900 to-black border border-neon-green/30 rounded-2xl p-5 space-y-4 shadow-[0_0_20px_rgba(255,59,48,0.15)]">
+            <div className="flex items-center gap-2 text-neon-green border-b border-white/5 pb-2.5">
+              <CheckCircle2 className="h-5 w-5 shrink-0" />
+              <span className="font-extrabold text-xs uppercase tracking-widest text-glow-green">Booking Confirmed</span>
+            </div>
+            <div className="space-y-2 text-2xs sm:text-xs">
+              <p className="text-gray-400">Visitor: <strong className="text-white font-semibold">{name}</strong></p>
+              <p className="text-gray-400">Date: <strong className="text-white font-semibold">{date}</strong></p>
+              <p className="text-gray-400">Time Slot: <strong className="text-white font-semibold text-neon-green">{time}</strong></p>
+              <p className="text-gray-400">Focus: <strong className="text-white font-semibold">{goal}</strong></p>
+              <p className="text-gray-400 font-light text-3xs mt-2 italic text-gray-500">Address: 1st Floor, Pride House, Shivaji Nagar (FC Road), Pune</p>
+            </div>
+            <a
+              href={`https://wa.me/919823012345?text=Hi%20PowerFit%20Pune!%20My%20tour%20is%20booked%20for%20${date}%20at%20${time}.%20Please%20confirm%20my%20entry.`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full py-2 bg-neon-green text-black font-extrabold text-center text-xs rounded-xl hover:bg-neon-green/90 transition-colors uppercase tracking-wider"
+            >
+              Text Receipt on WhatsApp
+            </a>
+          </div>
+        );
+      case "tour-or-faq":
+        return (
+          <div className="flex gap-2 mt-2">
+            <button
+              onClick={handleStartBooking}
+              className="flex-1 py-2 bg-neon-green text-black font-bold text-xs rounded-xl hover:bg-neon-green/90 transition-colors uppercase tracking-wider"
+            >
+              Book Gym Tour
+            </button>
+            <button
+              onClick={handleStartFAQs}
+              className="flex-1 py-2 border border-white/10 hover:bg-white/5 text-white font-semibold text-xs rounded-xl transition-all"
+            >
+              Ask FAQs
+            </button>
+          </div>
+        );
+      default:
+        return null;
     }
   };
 
@@ -406,7 +435,7 @@ export default function Chatbot() {
                     {m.isCustomComponent ? (
                       <div>
                         {m.text && <p className="mb-2">{m.text}</p>}
-                        {m.component}
+                        {renderCustomComponent(m)}
                       </div>
                     ) : null}
                   </div>

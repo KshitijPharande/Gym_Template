@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "id": "bk-1780581563529",
+    "timestamp": "2026-06-04T13:59:23.529Z",
+    "name": "Test Lead",
+    "phone": "9823012345",
+    "goal": "CrossFit",
+    "age": 27,
+    "visitDate": "2026-06-05",
+    "visitTime": "06:00 PM"
+  },
+  {
+    "id": "bk-1780581644911",
+    "timestamp": "2026-06-04T14:00:44.911Z",
+    "name": "xitih",
+    "phone": "8796644348",
+    "goal": "Strength Lifting",
+    "age": 25,
+    "visitDate": "2026-06-05",
+    "visitTime": "09:00 AM"
+  }
+]
