@@ -86,14 +86,14 @@ export async function POST(request: Request) {
     const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK;
     if (webhookUrl) {
       try {
-        // Run as background request
-        fetch(webhookUrl, {
+        // Wait for the request to complete before Vercel kills the serverless function!
+        await fetch(webhookUrl, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(newBooking),
-        }).catch((err) => console.error("Google Sheets webhook background sync failed:", err));
+        });
       } catch (err) {
         console.error("Google Sheets sync trigger error:", err);
       }
